@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق ثقه - حذف الحساب</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            direction: rtl;
+            padding-bottom: 70px;
+        }
+        
+        .status-bar {
+            background-color: white;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-bar .time {
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .status-bar .icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .settings-header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 10px 0 0;
+            margin-top: 10px;
+        }
+        
+        .settings-header .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .settings-header .icon {
+            background-color: #000;
+            border-radius: 15px;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .settings-header .icon img {
+            width: 30px;
+            height: 30px;
+            filter: invert(55%) sepia(86%) saturate(2420%) hue-rotate(360deg) brightness(100%) contrast(106%);
+        }
+        
+        .settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 10px;
+        }
+        
+        .settings-item {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .settings-item .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .settings-item .text {
+            font-size: 16px;
+        }
+        
+        .version {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+        
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #777;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .nav-item.active {
+            color: #ff6b00;
+        }
+        
+        .nav-item .icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+        
+        /* Deletion guide styles */
+        .deletion-guide {
+            margin: 20px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .guide-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+        
+        .guide-step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-right: 4px solid #ff6b00;
+        }
+        
+        .step-number {
+            font-weight: bold;
+            color: #ff6b00;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .step-instruction {
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        .notice {
+            background-color: #fff8e6;
+            border: 1px solid #ffe0b2;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="time">2:47</div>
+        <div class="icons">
+            <span>📶</span>
+            <span>📱</span>
+            <span>🔋</span>
+        </div>
+    </div>
+    
+    <!-- Settings Header -->
+    <div class="settings-header">
+        <div class="title">الإعدادات</div>
+        <div class="icon">
+            <img src="/api/placeholder/24/24" alt="wrench icon">
+        </div>
+    </div>
+    
+    <!-- Settings Grid -->
+    <div class="settings-grid">
+        <div class="settings-item">
+            <div class="icon">🔔</div>
+            <div class="text">التنبيهات</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">👤</div>
+            <div class="text">حسابي</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">🔒</div>
+            <div class="text">سياساتنا</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">📋</div>
+            <div class="text">الطلبات</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">↪️</div>
+            <div class="text">تسجيل الخروج</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">↗️</div>
+            <div class="text">مشاركة التطبيق</div>
+        </div>
+        <div class="settings-item" style="background-color: #cc0000;">
+            <div class="icon">🗑️</div>
+            <div class="text">حذف الحساب</div>
+        </div>
+        <div class="settings-item">
+            <div class="icon">🎧</div>
+            <div class="text">الدعم الفني</div>
+        </div>
+    </div>
+    
+    <!-- Deletion Guide Section -->
+    <div class="deletion-guide">
+        <div class="guide-title">دليل حذف الحساب</div>
+        
+        <div class="guide-step">
+            <div class="step-number">الخطوة 1:</div>
+            <div class="step-instruction">اضغط على "حذف الحساب" من قائمة الإعدادات .</div>
+        </div>
+        
+        <div class="guide-step">
+            <div class="step-number">الخطوة 2:</div>
+            <div class="step-instruction">ستظهر نافذة تأكيد تسألك إذا كنت متأكدًا من رغبتك في حذف الحساب. اضغط على "تأكيد الحذف".</div>
+        </div>
+        
+        <div class="guide-step">
+            <div class="step-number">الخطوة 3:</div>
+            <div class="step-instruction">اضغط على زر "حذف الحساب نهائياً" لإتمام العملية.</div>
+        </div>
+        
+        <div class="guide-step">
+            <div class="step-number">الخطوة 4:</div>
+            <div class="step-instruction">ستظهر رسالة تؤكد نجاح عملية حذف الحساب، وسيتم تسجيل خروجك من التطبيق تلقائيًا.</div>
+        </div>
+        
+        <div class="notice">
+            <strong>ملاحظات هامة:</strong>
+            <ul style="padding-right: 20px; margin-top: 10px;">
+                <li>عملية حذف الحساب نهائية ولا يمكن التراجع عنها.</li>
+                <li>سيتم حذف جميع بياناتك ومعلوماتك الشخصية من التطبيق.</li>
+                <li>سيتم إلغاء جميع طلباتك الحالية غير المكتملة.</li>
+                <li>إذا كنت تواجه أي مشكلة في عملية حذف الحساب، يرجى التواصل مع الدعم الفني.</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="version">V3.0.18</div>
+    
+    <!-- Bottom Navigation Bar -->
+    <div class="navbar">
+        <a href="#" class="nav-item active">
+            <div class="icon">⚙️</div>
+            <div>الإعدادات</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon">🔔</div>
+            <div>التنبيهات</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon">📋</div>
+            <div>الطلبات</div>
+        </a>
+        <a href="#" class="nav-item">
+            <div class="icon">🏠</div>
+            <div>الرئيسية</div>
+        </a>
+    </div>
+</body>
+</html>
